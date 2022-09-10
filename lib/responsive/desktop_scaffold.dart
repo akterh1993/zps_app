@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:zps_app/constants/constants.dart';
 
@@ -18,39 +15,48 @@ class DesktopScaffold extends StatelessWidget {
       body: Row(
         children: [
           // Open Drower
-          myDrawer
+          myDrawer,
           // rest Of Body
-          Expanded(child: Column(
-        children: [
-          // 4 box on the Top
-          AspectRatio(
-            aspectRatio: 4,
-            child: SizedBox(
-              width: double.infinity,
-              child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4),
-                itemBuilder: (context, index) {
-                  return const MyBox();
-                },
-              ),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                // 4 box on the Top
+                AspectRatio(
+                  aspectRatio: 4,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: GridView.builder(
+                      itemCount: 4,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4),
+                      itemBuilder: (context, index) {
+                        return const MyBox();
+                      },
+                    ),
+                  ),
+                ),
+
+                // tiles below it
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return const MyTile();
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-
-          // tiles below it
-          Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return const MyTile();
-              },
-            ),
-          )
+          Expanded(child: Column(
+            children: [
+              Expanded(child: Container(color: Colors.blue)),
+            ],
+          ))
         ],
-      ),)
-        ],
-        ),
+      ),
     );
   }
 }
